@@ -35,9 +35,7 @@ jobs:
       - name: Authenticate with Service Principal
         # Use GitHub Secrets for credentials
         run: |
-           fab auth login -u ${{ secrets.CLIENT_ID }} \
-            -p ${{ secrets.CLIENT_SECRET }} \
-            --tenant ${{ secrets.TENANT_ID }}
+           fab auth login -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
   
       - name: Run Fabric Notebook
         # Command triggers the job and typically blocks until completion
