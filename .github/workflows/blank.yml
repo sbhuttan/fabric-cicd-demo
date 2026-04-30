@@ -30,7 +30,9 @@ jobs:
         run: echo Hello, world!
 
       - name: Install Fabric CLI
-        run: pip install ms-fabric-cli
+        run: | 
+          config set encryption_fallback_enabled true
+          pip install ms-fabric-cli
   
       - name: Authenticate with Service Principal
         # Use GitHub Secrets for credentials
