@@ -31,11 +31,17 @@ jobs:
 
       - name: Install Fabric CLI
         run: pip install ms-fabric-cli
-   
+
+      - name: Enable Encryption Fallback
+        run: fab config set encryption_fallback_enabled true
+  
+      - name: Authenticate with Service Principal
+        # Use GitHub Secrets for credentials
+        run: |
+           fab auth login -u ${{ secrets.CLIENT_ID }} \
+            -p ${{ secrets.CLIENT_SECRET }} \
+            --tenant ${{ secrets.TENANT_ID }}
+  
       - name: Run Fabric Notebook
-        # We skip 'fab auth login' and pass credentials directly here
-        env:
-          FAB_AUTH_CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          FAB_AUTH_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          FAB_AUTH_TENANT_ID: ${{ secrets.TENANT_ID }}
+        # Command triggers the job and typically blocks until completion
         run: fab job run "DemoWorkspace.Workspace/Load Yellow Taxi Data.Notebook"
