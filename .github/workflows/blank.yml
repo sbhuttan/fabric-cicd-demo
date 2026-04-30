@@ -31,9 +31,6 @@ jobs:
 
       - name: Install Fabric CLI
         run: pip install ms-fabric-cli
-
-      - name: Enable Encryption Fallback
-        run: fab config set encryption_fallback_enabled true
   
       - name: Authenticate with Service Principal
         # Use GitHub Secrets for credentials
