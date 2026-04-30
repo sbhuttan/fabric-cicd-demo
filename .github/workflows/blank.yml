@@ -29,10 +29,12 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
+      - name: Enable Encryption Fallback
+        run: config set encryption_fallback_enabled true
+
+
       - name: Install Fabric CLI
-        run: | 
-          config set encryption_fallback_enabled true
-          pip install ms-fabric-cli
+        run: pip install ms-fabric-cli
   
       - name: Authenticate with Service Principal
         # Use GitHub Secrets for credentials
